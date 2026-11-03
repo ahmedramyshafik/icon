@@ -6,8 +6,8 @@
     <title>Ahmed AI Icon</title>
     <style>
         :root {
-            --bg-dark: #0d1117;
-            --card-bg: #161b22;
+            --bg-dark: #07090e;
+            --card-bg: #121720;
             --border-color: #30363d;
             --accent-blue: #58a6ff;
             --accent-purple: #bc8cff;
@@ -26,7 +26,7 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: var(--bg-dark);
+            background: radial-gradient(circle at 50% 0%, #1a1f2c 0%, var(--bg-dark) 75%);
             color: var(--text-main);
             line-height: 1.6;
             min-height: 100vh;
@@ -39,21 +39,27 @@
         .container {
             max-width: 900px;
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
         }
 
         header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 10px;
             animation: fadeInDown 1s ease-out;
         }
 
         header h1 {
             color: var(--text-heading);
-            font-size: 2.5rem;
+            font-size: 3.5s;
+            font-size: 3.5rem;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            background: linear-gradient(135deg, var(--accent-blue), var(--electric-blue), var(--accent-purple));
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: electricText 4s linear infinite;
         }
 
         .image-wrapper {
@@ -62,14 +68,15 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
-            margin-bottom: 30px;
+            max-width: 420px;
+            margin: 0 auto;
             animation: zoomIn 1s ease-out;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .image-wrapper:hover {
             transform: translateY(-5px);
-            box-shadow: 0 16px 40px rgba(88, 166, 255, 0.15);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
         }
 
         .image-wrapper img {
@@ -78,21 +85,26 @@
             display: block;
         }
 
-        /* Electric Animated Background Box for History */
-        .history-card {
+        /* Electric Animated Background Box for History and Cards */
+        .electric-box {
             position: relative;
-            background: linear-gradient(135deg, rgba(22, 27, 34, 0.9), rgba(13, 17, 23, 0.95));
+            background: linear-gradient(135deg, rgba(22, 27, 34, 0.95), rgba(13, 17, 23, 0.98));
             border-radius: 12px;
             padding: 32px;
-            margin-bottom: 30px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), inset 0 0 15px rgba(0, 240, 255, 0.1);
-            animation: fadeInUp 1s ease-out 0.2s cubic-bezier(0.1, 1, 0.1, 1) both;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(0, 240, 255, 0.08);
+            animation: fadeInUp 1s ease-out both;
             overflow: hidden;
             z-index: 1;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .electric-box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(176, 0, 255, 0.25);
         }
 
         /* Animated Electric Border Lines */
-        .history-card::before {
+        .electric-box::before {
             content: '';
             position: absolute;
             inset: -2px;
@@ -104,7 +116,7 @@
         }
 
         /* Inner background mask to keep the card dark inside */
-        .history-card::after {
+        .electric-box::after {
             content: '';
             position: absolute;
             inset: 2px;
@@ -113,7 +125,7 @@
             z-index: -1;
         }
 
-        .history-card h2 {
+        .electric-box h2 {
             color: var(--text-heading);
             font-size: 1.6rem;
             margin-bottom: 16px;
@@ -124,52 +136,37 @@
             padding-bottom: 12px;
         }
 
-        .history-card p {
+        .electric-box p {
             color: var(--text-main);
             font-size: 1.05rem;
             line-height: 1.8;
         }
 
-        .details-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 24px;
-            animation: fadeInUp 1s ease-out 0.4s cubic-bezier(0.1, 1, 0.1, 1) both;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            border-color: var(--accent-blue);
+        /* Stacked Layout Container */
+        .details-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
         }
 
         .card h2 {
-            color: var(--text-heading);
             font-size: 1.25rem;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .card p {
-            color: var(--text-main);
-            font-size: 0.95rem;
         }
 
         .card-img-wrapper {
-            margin-top: 15px;
+            margin-top: 20px;
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden;
+            max-width: 380px; /* Made the photo much bigger and easily readable */
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .card-img-wrapper:hover {
+            transform: scale(1.02);
         }
 
         .card-img-wrapper img {
@@ -188,68 +185,49 @@
 
         .btn-profile {
             display: inline-block;
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            background: linear-gradient(135deg, var(--accent-blue), var(--electric-purple));
             color: #ffffff;
             font-weight: 600;
-            font-size: 0.95rem;
-            padding: 12px 24px;
-            border-radius: 8px;
+            font-size: 1rem;
+            padding: 14px 32px;
+            border-radius: 10px;
             text-decoration: none;
-            transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 4px 12px rgba(88, 166, 255, 0.2);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 240, 255, 0.3);
         }
 
         .btn-profile:hover {
-            opacity: 0.95;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(188, 140, 255, 0.4);
+            opacity: 1;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 22px rgba(176, 0, 255, 0.6);
         }
 
-        /* Electric Border Animation */
+        /* Electric Border & Text Animations */
         @keyframes electricBorder {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        /* Animations */
+        @keyframes electricText {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes zoomIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         @keyframes fadeIn {
@@ -259,12 +237,12 @@
 
         @media (max-width: 600px) {
             header h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             body {
                 padding: 20px 12px;
             }
-            .history-card {
+            .electric-box {
                 padding: 20px;
             }
         }
@@ -279,27 +257,28 @@
 
         <!-- Unaltered exact image presentation -->
         <div class="image-wrapper">
-            <img src="favicon.png" alt="Ahmed AI Icon Monogram">
+            <img src="1000086881.jpg" alt="Ahmed AI Icon Monogram">
         </div>
 
         <!-- Featured Main History Box with Electric Background Effect -->
-        <div class="history-card">
+        <div class="electric-box">
             <h2><span>📜</span> The History Behind the Icon</h2>
             <p>
                 The story began in 2023 when I chose my future identity as <strong>Ahmed AI</strong>. Two years later, in 2025, I set out to create a unique icon that had never been made or thought of before. After weeks of work, I created a one-of-a-kind symbol to represent Ahmed AI and crafted it into an official stamp. This icon is not common—it stands for future innovation and world change, appearing across my inventions and digital projects.
             </p>
         </div>
 
-        <div class="details-grid">
-            <div class="card">
+        <!-- Stacked Layout for the boxes -->
+        <div class="details-stack">
+            <div class="electric-box card">
                 <h2><span>🛡️</span> Proven Originality</h2>
                 <p>Scanned against <strong>86.5+ billion images</strong> via reverse image search with <strong>0 matches</strong>, proving complete originality and unique design ownership.</p>
                 <div class="card-img-wrapper">
-                    <img src="WhatsApp Image 2026-10-30 at 10.48.35 AM.jpeg" alt="Ahmed AI Icon Monogram">
+                    <img src="1000086881.jpg" alt="Ahmed AI Icon Monogram">
                 </div>
             </div>
 
-            <div class="card">
+            <div class="electric-box card">
                 <h2><span>🤖</span> Behind the Icon</h2>
                 <p>This icon stands as the visual signature representing <strong>Ahmed AI</strong>—a tailored AI entity built on original creative foundations.</p>
             </div>
