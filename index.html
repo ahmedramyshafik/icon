@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ahmed AI - Official Icon & Identity</title>
+    <title>Ahmed AI Icon</title>
     <style>
         :root {
             --bg-dark: #0d1117;
@@ -14,6 +14,8 @@
             --text-main: #c9d1d9;
             --text-heading: #f0f6fc;
             --text-muted: #8b949e;
+            --electric-blue: #00f0ff;
+            --electric-purple: #b000ff;
         }
 
         * {
@@ -42,21 +44,16 @@
         header {
             text-align: center;
             margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
         }
 
         header h1 {
             color: var(--text-heading);
             font-size: 2.5rem;
             font-weight: 800;
-            margin-bottom: 10px;
             background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-
-        header p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
         }
 
         .image-wrapper {
@@ -65,13 +62,72 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
-            margin-bottom: 40px;
+            margin-bottom: 30px;
+            animation: zoomIn 1s ease-out;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-wrapper:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 40px rgba(88, 166, 255, 0.15);
         }
 
         .image-wrapper img {
             width: 100%;
             height: auto;
             display: block;
+        }
+
+        /* Electric Animated Background Box for History */
+        .history-card {
+            position: relative;
+            background: linear-gradient(135deg, rgba(22, 27, 34, 0.9), rgba(13, 17, 23, 0.95));
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), inset 0 0 15px rgba(0, 240, 255, 0.1);
+            animation: fadeInUp 1s ease-out 0.2s cubic-bezier(0.1, 1, 0.1, 1) both;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        /* Animated Electric Border Lines */
+        .history-card::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(90deg, var(--electric-blue), var(--electric-purple), var(--accent-blue), var(--electric-blue));
+            background-size: 300% 300%;
+            z-index: -2;
+            border-radius: 14px;
+            animation: electricBorder 4s linear infinite;
+        }
+
+        /* Inner background mask to keep the card dark inside */
+        .history-card::after {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            z-index: -1;
+        }
+
+        .history-card h2 {
+            color: var(--text-heading);
+            font-size: 1.6rem;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+
+        .history-card p {
+            color: var(--text-main);
+            font-size: 1.05rem;
+            line-height: 1.8;
         }
 
         .details-grid {
@@ -86,6 +142,13 @@
             border: 1px solid var(--border-color);
             border-radius: 10px;
             padding: 24px;
+            animation: fadeInUp 1s ease-out 0.4s cubic-bezier(0.1, 1, 0.1, 1) both;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-blue);
         }
 
         .card h2 {
@@ -102,27 +165,96 @@
             font-size: 0.95rem;
         }
 
-        .highlight {
-            color: var(--accent-blue);
-            font-weight: 600;
+        .card-img-wrapper {
+            margin-top: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
         footer {
             text-align: center;
             padding-top: 20px;
             border-top: 1px solid var(--border-color);
-            color: var(--text-muted);
-            font-size: 0.9rem;
             width: 100%;
+            animation: fadeIn 1s ease-out 0.6s both;
         }
 
-        footer a {
-            color: var(--accent-blue);
+        .btn-profile {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 12px 24px;
+            border-radius: 8px;
             text-decoration: none;
+            transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 12px rgba(88, 166, 255, 0.2);
         }
 
-        footer a:hover {
-            text-decoration: underline;
+        .btn-profile:hover {
+            opacity: 0.95;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(188, 140, 255, 0.4);
+        }
+
+        /* Electric Border Animation */
+        @keyframes electricBorder {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         @media (max-width: 600px) {
@@ -132,6 +264,9 @@
             body {
                 padding: 20px 12px;
             }
+            .history-card {
+                padding: 20px;
+            }
         }
     </style>
 </head>
@@ -139,24 +274,29 @@
 
     <div class="container">
         <header>
-            <h1>Ahmed AI</h1>
-            <p>The Original Visual Identity &amp; Verification</p>
+            <h1>Ahmed AI Icon</h1>
         </header>
 
         <!-- Unaltered exact image presentation -->
         <div class="image-wrapper">
-            <img src="image_078afc.png" alt="TinEye Verification - 0 matches for Ahmed AI Icon">
+            <img src="1000086881.jpg" alt="Ahmed AI Icon Monogram">
+        </div>
+
+        <!-- Featured Main History Box with Electric Background Effect -->
+        <div class="history-card">
+            <h2><span>📜</span> The History Behind the Icon</h2>
+            <p>
+                The story began in 2023 when I chose my future identity as <strong>Ahmed AI</strong>. Two years later, in 2025, I set out to create a unique icon that had never been made or thought of before. After weeks of work, I created a one-of-a-kind symbol to represent Ahmed AI and crafted it into an official stamp. This icon is not common—it stands for future innovation and world change, appearing across my inventions and digital projects.
+            </p>
         </div>
 
         <div class="details-grid">
             <div class="card">
-                <h2><span>💡</span> The Monogram</h2>
-                <p>The custom icon spells out <span class="highlight">"Adhe"</span>, seamlessly integrating the letters into a single modern geometric mark that forms the core aesthetic of <strong>Ahmed AI</strong>.</p>
-            </div>
-
-            <div class="card">
                 <h2><span>🛡️</span> Proven Originality</h2>
                 <p>Scanned against <strong>86.5+ billion images</strong> via reverse image search with <strong>0 matches</strong>, proving complete originality and unique design ownership.</p>
+                <div class="card-img-wrapper">
+                    <img src="1000086881.jpg" alt="Ahmed AI Icon Monogram">
+                </div>
             </div>
 
             <div class="card">
@@ -166,7 +306,7 @@
         </div>
 
         <footer>
-            <p>Ahmed AI Portfolio &bull; Live History: <a href="https://ahmedramyshafik.github.io/a/" target="_blank">ahmedramyshafik.github.io/a/</a></p>
+            <a href="https://ahmedramyshafik.github.io/a/" target="_blank" class="btn-profile">Ahmed AI Profile</a>
         </footer>
     </div>
 
